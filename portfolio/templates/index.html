@@ -108,52 +108,53 @@
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
                     data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="https://htmlcodex.com/startup-company-website-template"
-                    class="btn btn-primary py-2 px-4 ms-3">Register/Login</a>
+                <a href="{%url 'loginapp:signup'%}" class="btn btn-primary py-2 px-4 ms-3">Register/Login</a>
             </div>
         </nav>
 
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{% static 'img/carousel-1.jpg' %}" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
-                                Solution</h1>
-                            <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free
-                                Quote</a>
-                            <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
-                                Us</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static 'img/carousel-2.jpg' %}" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
-                                Solution</h1>
-                            <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free
-                                Quote</a>
-                            <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
-                                Us</a>
-                        </div>
+
+    </div>
+    <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/carousel-1.jpg' %}" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
+                            Solution</h1>
+                        <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free
+                            Quote</a>
+                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
+                            Us</a>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item">
+                <img src="{% static 'img/carousel-2.jpg' %}" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
+                            Solution</h1>
+                        <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free
+                            Quote</a>
+                        <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
+                            Us</a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+
     <!-- Navbar & Carousel End -->
 
 
@@ -870,15 +871,19 @@
                                 <a class="text-light mb-2" href="#"><i
                                         class="bi bi-arrow-right text-primary me-2"></i>Home</a>
                                 <a class="text-light mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>About
+                                    Us</a>
                                 <a class="text-light mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>Our
+                                    Services</a>
                                 <a class="text-light mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>Meet
+                                    The Team</a>
                                 <a class="text-light mb-2" href="#"><i
                                         class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
                                 <a class="text-light" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>Contact
+                                    Us</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
@@ -889,15 +894,19 @@
                                 <a class="text-light mb-2" href="#"><i
                                         class="bi bi-arrow-right text-primary me-2"></i>Home</a>
                                 <a class="text-light mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>About
+                                    Us</a>
                                 <a class="text-light mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>Our
+                                    Services</a>
                                 <a class="text-light mb-2" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>Meet
+                                    The Team</a>
                                 <a class="text-light mb-2" href="#"><i
                                         class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
                                 <a class="text-light" href="#"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                                        class="bi bi-arrow-right text-primary me-2"></i>Contact
+                                    Us</a>
                             </div>
                         </div>
                     </div>

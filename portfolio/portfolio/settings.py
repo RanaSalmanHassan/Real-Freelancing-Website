@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jobseeker',
     'loginapp',
+    'captcha',
 ]
 
 MIDDLEWARE = [
