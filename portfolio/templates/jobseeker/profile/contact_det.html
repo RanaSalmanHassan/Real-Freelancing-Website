@@ -240,10 +240,25 @@
         <a href="{%url 'jobseeker:profile/basic_info'%}" class="links">Basic Info</a>
         <a href="{%url 'jobseeker:profile/education'%}" class="links">Education</a>
         <a href="{%url 'jobseeker:profile/contact_det'%}" class="links">Contact Details</a>
-        <a href="" class="links">Cureent Employment</a>
-        <a href="" class="links">Career Preferences</a>
+        <a href="{%url 'jobseeker:profile/current_emp'%}" class="links">Cureent Employment</a>
+        <a href="{%url 'jobseeker:profile/career_pref'%}" class="links">Career Preferences</a>
     </div>
-
+    <!--Messages Start-->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}
+                    {% if message.tags == 'success' %}alert-success{% endif %}
+                    {% if message.tags == 'info' %}alert-info{% endif %}
+                    {% if message.tags == 'warning' %}alert-warning{% endif %}
+                    {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
+        style="display: flex; flex-direction: row;">
+        <span>{{ message }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            style="margin-top: 20px ; margin-right: 50px; padding: 0;"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!--Messages End-->
     <div class="basic-info">
         <div class="heading-div">
             <span class="p-info">Contact Details</span>
@@ -264,9 +279,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">Main Contact Number</th>
-                            <td><label for="phone-code"></label>
-                                <select id="phone-code" name="phone-code">
+                            <th scope="row">Main Contact Number &#9733;</th>
+                            <td><label for="phone_code1"></label>
+                                <select id="phone_code1" name="phone_code1">
                                     <option value="+61">Australia (+61)</option>
                                     <option value="+55">Brazil (+55)</option>
                                     <option value="+1">Canada (+1)</option>
@@ -319,10 +334,10 @@
                                     <option value="+84">Vietnam (+84)</option>
                                 </select>
                             </td>
-                            <td><input type="text" name="area_code" id="area_code"></td>
-                            <td><input type="text" name="phone_number" id="phone_number"></td>
-                            <td><label for="phone-code"></label>
-                                <select id="phone-code" name="phone-code">
+                            <td><input type="text" name="area_code1" id="area_code1"></td>
+                            <td><input type="text" name="phone_number1" id="phone_number1"></td>
+                            <td><label for="phone_type1"></label>
+                                <select id="phone_type1" name="phone_type1">
                                     <option value="Home">Home</option>
                                     <option value="Work">Work</option>
                                     <option value="Mobile">Mobile</option>
@@ -332,8 +347,8 @@
                         </tr>
                         <tr>
                             <th scope="row">Second Contact Number</th>
-                            <td><label for="phone-code"></label>
-                                <select id="phone-code" name="phone-code">
+                            <td><label for="phone-code2"></label>
+                                <select id="phone-code2" name="phone-code2">
                                     <option value="+61">Australia (+61)</option>
                                     <option value="+55">Brazil (+55)</option>
                                     <option value="+1">Canada (+1)</option>
@@ -386,10 +401,10 @@
                                     <option value="+84">Vietnam (+84)</option>
                                 </select>
                             </td>
-                            <td><input type="text" name="area_code" id="area_code"></td>
-                            <td><input type="text" name="phone_number" id="phone_number"></td>
-                            <td><label for="phone-code"></label>
-                                <select id="phone-code" name="phone-code">
+                            <td><input type="text" name="area_code2" id="area_code2"></td>
+                            <td><input type="text" name="phone_number2" id="phone_number2"></td>
+                            <td><label for="phone-code2"></label>
+                                <select id="phone_type2" name="phone_type2">
                                     <option value="Home">Home</option>
                                     <option value="Work">Work</option>
                                     <option value="Mobile">Mobile</option>
@@ -399,8 +414,8 @@
                         </tr>
                         <tr>
                             <th scope="row">Third Contact Number</th>
-                            <td><label for="phone-code"></label>
-                                <select id="phone-code" name="phone-code">
+                            <td><label for="phone-code3"></label>
+                                <select id="phone-code3" name="phone-code3">
                                     <option value="+61">Australia (+61)</option>
                                     <option value="+55">Brazil (+55)</option>
                                     <option value="+1">Canada (+1)</option>
@@ -453,10 +468,10 @@
                                     <option value="+84">Vietnam (+84)</option>
                                 </select>
                             </td>
-                            <td><input type="text" name="area_code" id="area_code"></td>
-                            <td><input type="text" name="phone_number" id="phone_number"></td>
-                            <td><label for="phone-code"></label>
-                                <select id="phone-code" name="phone-code">
+                            <td><input type="text" name="area_code3" id="area_code3"></td>
+                            <td><input type="text" name="phone_number3" id="phone_number3"></td>
+                            <td><label for="phone_type3"></label>
+                                <select id="phone_type3" name="phone_type3">
                                     <option value="Home">Home</option>
                                     <option value="Work">Work</option>
                                     <option value="Mobile">Mobile</option>

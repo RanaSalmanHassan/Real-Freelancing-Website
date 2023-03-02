@@ -268,10 +268,25 @@
         <a href="{%url 'jobseeker:profile/basic_info'%}" class="links">Basic Info</a>
         <a href="{%url 'jobseeker:profile/education'%}" class="links">Education</a>
         <a href="{%url 'jobseeker:profile/contact_det'%}" class="links">Contact Details</a>
-        <a href="" class="links">Cureent Employment</a>
-        <a href="" class="links">Career Preferences</a>
+        <a href="{%url 'jobseeker:profile/current_emp'%}" class="links">Cureent Employment</a>
+        <a href="{%url 'jobseeker:profile/career_pref'%}" class="links">Career Preferences</a>
     </div>
-
+    <!--Messages Start-->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}
+                    {% if message.tags == 'success' %}alert-success{% endif %}
+                    {% if message.tags == 'info' %}alert-info{% endif %}
+                    {% if message.tags == 'warning' %}alert-warning{% endif %}
+                    {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
+        style="display: flex; flex-direction: row;">
+        <span>{{ message }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            style="margin-top: 20px ; margin-right: 50px; padding: 0;"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!--Messages End-->
     <div class="basic-info">
         <div class="heading-div">
             <span class="p-info">Education</span>
@@ -282,24 +297,23 @@
                 {%csrf_token%}
                 <span><label for="degree" class="label-title">Do you have a university degree : </label>
                     <label>
-                        <input type="radio" name="degree" value="yes"> Yes
+                        <input type="radio" name="degree" value="True"> Yes
                     </label>
                     <label>
-                        <input type="radio" name="degree" value="no"> No
+                        <input type="radio" name="degree" value="True"> No
                     </label>
                 </span>
                 <span><label for="fresh_university" class="label-title">Are you fresh graduate or currently studying in
                         university</label>
                     <label>
-                        <input type="radio" name="fresh_university" value="yes"> Yes
+                        <input type="radio" name="fresh_university" value="True"> Yes
                     </label>
                     <label>
-                        <input type="radio" name="fresh_university" value="no"> No
+                        <input type="radio" name="fresh_university" value="False"> No
                     </label>
                 </span>
-                <span><label for="undergrad-subject" class="label-title">Undergraduate Subject:</label>
-                    <select name="undergrad-subject" id="undergrad-subject">
-                        <option value="">--Select an Option--</option>
+                <span><label for="undergrad_subject" class="label-title">Undergraduate Subject:</label>
+                    <select name="undergrad_subject" id="undergrad_subject">
                         <option value="Accounting">Accounting</option>
                         <option value="Art History">Art History</option>
                         <option value="Biology">Biology</option>

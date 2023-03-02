@@ -127,6 +127,7 @@
     <!-- Navbar End -->
 
 
+
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
@@ -261,21 +262,36 @@
         <a href="{%url 'jobseeker:profile/basic_info'%}" class="links">Basic Info</a>
         <a href="{%url 'jobseeker:profile/education'%}" class="links">Education</a>
         <a href="{%url 'jobseeker:profile/contact_det'%}" class="links">Contact Details</a>
-        <a href="" class="links">Cureent Employment</a>
-        <a href="" class="links">Career Preferences</a>
+        <a href="{%url 'jobseeker:profile/current_emp'%}" class="links">Cureent Employment</a>
+        <a href="{%url 'jobseeker:profile/career_pref'%}" class="links">Career Preferences</a>
     </div>
-
+    <!--Messages Start-->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}
+                    {% if message.tags == 'success' %}alert-success{% endif %}
+                    {% if message.tags == 'info' %}alert-info{% endif %}
+                    {% if message.tags == 'warning' %}alert-warning{% endif %}
+                    {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
+        style="display: flex; flex-direction: row;">
+        <span>{{ message }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            style="margin-top: 20px ; margin-right: 50px; padding: 0;"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!--Messages End-->
     <div class="basic-info">
         <div class="heading-div">
             <span class="p-info">Personal Information</span>
             <span class="line"></span>
         </div>
         <div class="form-div">
-            <form method="post">
+            <form method="post" action="{%url 'jobseeker:profile/basic_info'%}">
                 {%csrf_token%}
-                <span>First Name : <input type="text" name="first-name" id="first-name"></span>
-                <span>Last Name : <input type="text" name="last-name" id="last-name"></span>
-                <span>Date of Birth : <input type="date" name="last-name" id="last-name"></span>
+                <span>First Name : <input type="text" name="first_name" id="first_name"></span>
+                <span>Last Name : <input type="text" name="last_name" id="last_name"></span>
+                <span>Date of Birth : <input type="date" name="date_of_birth" id="date_of_birth"></span>
                 <span><label for="gender">Gender:</label>
                     <label>
                         <input type="radio" name="gender" value="male"> Male
@@ -284,8 +300,8 @@
                         <input type="radio" name="gender" value="female"> Female
                     </label>
                 </span>
-                <span><label for="country">Passport Nationality</label>
-                    <select name="country" id="country">
+                <span><label for="country_pp">Passport Nationality</label>
+                    <select name="country_pp" id="country_pp">
                         <option value="Australia">Australia</option>
                         <option value="Brazil">Brazil</option>
                         <option value="Canada">Canada</option>
@@ -339,8 +355,8 @@
                         <option value="Other">Other</option>
                     </select>
                 </span>
-                <span><label for="country">Current Location:</label>
-                    <select name="country" id="country">
+                <span><label for="country_loc">Current Location:</label>
+                    <select name="country_loc" id="country_loc">
                         <option value="Australia">Australia</option>
                         <option value="Brazil">Brazil</option>
                         <option value="Canada">Canada</option>
@@ -396,15 +412,15 @@
                 </span>
                 <span>Name of city currently based : <input type="text" name="city_name" id="city_name"></span>
                 <span>
-                    <label for="english-levels">What is your current english level : </label>
+                    <label for="english_level">What is your current english level : </label>
                     <label>
-                        <input type="radio" name="english-level" value="Fluent"> Fluent
+                        <input type="radio" name="english_level" value="Fluent"> Fluent
                     </label>
                     <label>
-                        <input type="radio" name="english-level" value="Native"> Native
+                        <input type="radio" name="english_level" value="Native"> Native
                     </label>
                     <label>
-                        <input type="radio" name="english-level" value="Working_Knowledge"> Working Knowledge
+                        <input type="radio" name="english_level" value="Working_Knowledge"> Working Knowledge
                     </label>
                 </span>
                 <button class="interactive-button" type="submit">Save Changes</button>

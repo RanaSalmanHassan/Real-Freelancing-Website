@@ -187,8 +187,6 @@ currency_choices = (
     ('UAE Dirham', 'UAE Dirham'),
     ('Pakistani Rupee', 'Pakistani Rupee')
 )
-
-
 def only_integer(value):
     if value.isdigit() == False:
         raise ValidationError('Contact Number should only contain numbers!')
@@ -245,7 +243,6 @@ class Current_Employement(models.Model):
     current_position = models.CharField(max_length=40, blank=True)
     job_category = models.CharField(max_length=40, blank=True)
     experience = models.CharField(max_length=40, blank=True)
-    name_of_company = models.CharField(max_length=40, blank=True)
 
 
 class Career_Preference(models.Model):
@@ -257,5 +254,5 @@ class Career_Preference(models.Model):
     min_expected_salary_amount = models.CharField(max_length=40, blank=True)
     min_expected_salary_currency = models.CharField(max_length=40,
                                                     blank=True, choices=currency_choices)
-    min_expected_salary_currency = models.CharField(max_length=40,
+    monthly_yearly_choice = models.CharField(max_length=40,
                                                     blank=True, choices=month_year_choice)
