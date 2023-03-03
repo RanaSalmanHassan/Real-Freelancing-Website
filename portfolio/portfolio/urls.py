@@ -19,12 +19,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns,static
 from django.conf import settings
 from . import views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),
     path('loginapp/',include('loginapp.urls')),
     path('jobseeker/',include('jobseeker.urls')),
+    path('employer/', include('employer.urls')),
     path('captcha', include('captcha.urls')),
 ]
 

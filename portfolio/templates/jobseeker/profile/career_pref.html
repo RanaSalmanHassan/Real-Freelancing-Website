@@ -272,23 +272,36 @@
         <a href="{%url 'jobseeker:profile/current_emp'%}" class="links">Cureent Employment</a>
         <a href="{%url 'jobseeker:profile/career_pref'%}" class="links">Career Preferences</a>
     </div>
-
+    <!--Messages Start-->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}
+                        {% if message.tags == 'success' %}alert-success{% endif %}
+                        {% if message.tags == 'info' %}alert-info{% endif %}
+                        {% if message.tags == 'warning' %}alert-warning{% endif %}
+                        {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
+        style="display: flex; flex-direction: row;">
+        <span>{{ message }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            style="margin-top: 20px ; margin-right: 50px; padding: 0;"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!--Messages End-->
     <div class="basic-info">
         <div class="heading-div">
             <span class="p-info">Career Preferences</span>
             <span class="line"></span>
         </div>
         <div class="form-div">
-            <form method="post">
+            <form method="post" action="{%url 'jobseeker:profile/career_pref'%}">
                 {%csrf_token%}
-                <span>What is your first preferred location to work in : <input type="text" name="1_pre_loc"
-                        id="1_pre_loc" placeholder="e.g. Country-City => America-Washington"></span>
-                <span>What is your second preferred location to work in : <input type="text" name="2_pre_loc"
-                        id="2_pre_loc" placeholder="e.g. Country-City => America-Washington"></span>
-                <span>What is your third preferred location to work in : <input type="text" name="3_pre_loc"
-                        id="3_pre_loc" placeholder="e.g. Country-City => America-Washington"></span>
-                <span>What is your third preferred location to work in : <input type="text" name="3_pre_loc"
-                        id="3_pre_loc" placeholder="e.g. Country-City => America-Washington"></span>
+                <span>What is your first preferred location to work in : <input type="text" name="first_pre_loc"
+                        id="first_pre_loc" placeholder="e.g. Country-City => America-Washington"></span>
+                <span>What is your second preferred location to work in : <input type="text" name="second_pre_loc"
+                        id="second_pre_loc" placeholder="e.g. Country-City => America-Washington"></span>
+                <span>What is your third preferred location to work in : <input type="text" name="third_pre_loc"
+                        id="third_pre_loc" placeholder="e.g. Country-City => America-Washington"></span>
                 <br>
                 <span>What is the mininmum salary you will expect? <input type="text" name="min_amount" id="min_amount"
                         placeholder="e.g. 300">

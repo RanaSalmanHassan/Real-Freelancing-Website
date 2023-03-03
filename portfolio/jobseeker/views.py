@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Basic_Info, Education, Contact_Details, Current_Employement, Career_Preference
@@ -66,14 +66,6 @@ def contact_det(request):
         area_code1 = request.POST.get('area_code1', None)
         phone_number1 = request.POST.get('phone_number1', None)
         phone_type1 = request.POST.get('phone_type1', None)
-        # phone_code2 = request.POST.get('phone-code2', None)
-        # area_code2 = request.POST.get('area_code2', None)
-        # phone_number2 = request.POST.get('phone_number2', None)
-        # phone_type2 = request.POST.get('phone_type2', None)
-        # phone_code3 = request.POST.get('phone-code3', None)
-        # area_code3 = request.POST.get('area_code3', None)
-        # phone_number3 = request.POST.get('phone_number3', None)
-        # phone_type3 = request.POST.get('phone_type3', None)
 
         required_fields = ['phone_code1', 'area_code1',
                            'phone_number1', 'phone_type1']
@@ -119,4 +111,25 @@ def current_emp(request):
 
 @login_required(login_url='loginapp:login')
 def career_pref(request):
-    return render(request, 'jobseeker/profile/career_pref.html')
+    if request.method == 'POST':
+        first_pre_loc = request.POST.get('first_pre_loc', None)
+        second_pre_loc = request.POST.get('second_pre_loc', None)
+        third_pre_loc = request.POST.get('third_pre_loc', None)
+        min_amount = request.POST.get('min_amount', None)
+        currency = request.POST.get('currency', None)
+        frequency = request.POST.get('frequency', None)
+
+        required_fields = ['first_pre_loc',
+                           'min_amount', 'currency', 'frequency']
+        if all(field in request.POST for field in required_fields):
+            Career_Preference.objects.create(
+                user=request.user, first_place=first_pre_loc, second_place=second_pre_loc,
+                third_place=third_pre_loc, min_expected_salary_amount=min_amount,
+                min_expected_salary_currency=currency, monthly_yearly_choice=frequency
+            )
+            return HttpResponse('Thanks XD!')
+        else:
+            messages.error(request, 'Please fill all fields!')
+            return HttpResponseRedirect(reverse('jobseeker:profile/career_pref'))
+    else:
+        return render(request, 'jobseeker/profile/career_pref.html')

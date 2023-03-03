@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    {%load static%}
     <meta charset="utf-8">
     <title>Startup - Startup Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -24,14 +23,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
-    <link href="{%static 'lib/animate/animate.min.css'%}" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{%static 'css/style.css'%}" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -98,8 +97,8 @@
                         <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                            <a href="feature.html" class="dropdown-item active">Our features</a>
-                            <a href="team.html" class="dropdown-item">Team Members</a>
+                            <a href="feature.html" class="dropdown-item">Our features</a>
+                            <a href="team.html" class="dropdown-item active">Team Members</a>
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             <a href="quote.html" class="dropdown-item">Free Quote</a>
                         </div>
@@ -113,13 +112,13 @@
             </div>
         </nav>
 
-        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 20px;">
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
             <div class="row py-5">
                 <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                    <h1 class="display-4 text-white animated zoomIn">Profile</h1>
+                    <h1 class="display-4 text-white animated zoomIn">Team Members</h1>
                     <a href="" class="h5 text-white">Home</a>
                     <i class="far fa-circle text-white px-2"></i>
-                    <a href="" class="h5 text-white">Features</a>
+                    <a href="" class="h5 text-white">Team Members</a>
                 </div>
             </div>
         </div>
@@ -147,132 +146,8 @@
     </div>
     <!-- Full Screen Search End -->
 
-    <!-- Current Employment Start -->
 
-    <style>
-        body {
-            background-color: lightgray;
-        }
-
-        .white-strip {
-            display: flex;
-            flex-direction: row;
-            margin-top: 0;
-            background-color: white;
-            margin-left: 50px;
-            justify-content: space-between;
-        }
-
-        .links {
-            color: black;
-            padding: 10px;
-        }
-
-        .links:hover {
-            text-decoration: overline green;
-            color: black;
-        }
-
-        .basic-info {
-            background-color: white;
-            margin-top: 20px;
-            margin-left: 50px;
-        }
-
-        .p-info {
-            font-size: 25px;
-            color: rgb(14, 14, 53);
-            margin-left: 20px;
-            font-size: 24px;
-            text-align: center;
-            position: relative;
-        }
-
-        .line {
-            position: absolute;
-            bottom: 325px;
-            left: 555px;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background-color: black;
-        }
-
-        .form-div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-left: 300px;
-            margin-top: 50px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            /* changed from 'center' */
-            width: 80%;
-        }
-
-        label {
-            display: inline-block;
-            width: 300px;
-            /* adjust as needed */
-        }
-
-        .label-title {
-            font-weight: 900;
-        }
-
-        span {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            /* changed from 'center' */
-            align-items: center;
-            margin: 10px 0;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        select {
-            margin-left: 10px;
-        }
-
-        .interactive-button {
-            background-color: #4dc3ff;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease-in-out;
-            padding-left: 50px;
-            padding-right: 50px;
-            margin-left: 110px;
-            margin-top: 50px;
-            margin-bottom: 25px;
-        }
-
-        .interactive-button:hover {
-            background-color: #3fb8e8;
-            cursor: pointer;
-        }
-    </style>
-
-    <div class="white-strip">
-        <a href="{%url 'jobseeker:profile/basic_info'%}" class="links">Basic Info</a>
-        <a href="{%url 'jobseeker:profile/education'%}" class="links">Education</a>
-        <a href="{%url 'jobseeker:profile/contact_det'%}" class="links">Contact Details</a>
-        <a href="{%url 'jobseeker:profile/current_emp'%}" class="links">Cureent Employment</a>
-        <a href="{%url 'jobseeker:profile/career_pref'%}" class="links">Career Preferences</a>
-    </div>
-
+    <!-- Team Start -->
     <!--Messages Start-->
     {% if messages %}
     {% for message in messages %}
@@ -289,35 +164,101 @@
     {% endfor %}
     {% endif %}
     <!--Messages End-->
-
-    <div class="basic-info">
-        <div class="heading-div">
-            <span class="p-info">Current Employment</span>
-            <span class="line"></span>
-        </div>
-        <div class="form-div">
-            <form method="post">
-                {%csrf_token%}
-                <span>What is the name of the company you work in : <input type="text" name="comp_name" id="comp_name"
-                        placeholder="e.g. Apple"></span>
-                <span>What is the main activity of your company : <input type="text" name="comp_act" id="comp_act"
-                        placeholder="e.g. Marketing"></span>
-                <span>What is your current positon : <input type="text" name="user_pos" id="user_pos"
-                        placeholder="e.g. Finance Head"></span>
-                <span>What is your category of your job : <input type="text" name="user_cat" id="user_cat"
-                        placeholder="e.g. Finance"></span>
-                <span>How much experience do you have : <input type="text" name="user_exp" id="user_exp"
-                        placeholder="e.g. 4 Years"></span>
-
-
-                <button class="interactive-button" type="submit">Save Changes</button>
-
-            </form>
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
+                <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img src="{% static 'img/team-1.jpg' %}" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h4 class="text-primary">Full Name</h4>
+                            <p class="text-uppercase m-0">Designation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img src="{% static 'img/team-2.jpg' %}" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h4 class="text-primary">Full Name</h4>
+                            <p class="text-uppercase m-0">Designation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img src="{% static 'img/team-3.jpg' %}" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h4 class="text-primary">Full Name</h4>
+                            <p class="text-uppercase m-0">Designation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Current Employment End -->
+    <!-- Team End -->
 
 
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5 mb-5">
+            <div class="bg-white">
+                <div class="owl-carousel vendor-carousel">
+                    <img src="{% static 'img/vendor-1.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-2.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-3.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-4.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-5.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-6.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-7.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-8.jpg' %}" alt="">
+                    <img src="{% static 'img/vendor-9.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
 
 
     <!-- Footer Start -->
@@ -438,15 +379,15 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{%static 'lib/wow/wow.min.js'%}"></script>
-    <script src="{%static 'lib/easing/easing.min.js'%}"></script>
-    <script src="{%static 'lib/waypoints/waypoints.min.js'%}"></script>
-    <script src="{%static 'lib/counterup/counterup.min.js'%}"></script>
-    <script src="{%static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
 
     <!-- Template Javascript -->
-    <script src="{%static 'js/main.js'%}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
