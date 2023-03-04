@@ -12,7 +12,7 @@ def create_job_view(request):
     if current_user.is_admin:
         form = Create_Job_Form()
         if request.method == 'POST':
-            form = Create_Job_Form(request.POST)
+            form = Create_Job_Form(request.POST,request.FILES)
             if form.is_valid():
                 form_instance = form.save(commit=False)
                 form_instance.admin = current_user

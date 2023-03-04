@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    {%load static%}
     <meta charset="utf-8">
     <title>Startup - Startup Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -23,14 +24,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    <link href="{%static 'lib/animate/animate.min.css'%}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{%static 'css/style.css'%}" rel="stylesheet">
 </head>
 
 <body>
@@ -145,17 +146,14 @@
         </div>
     </div>
     <!-- Full Screen Search End -->
-
-
-    <!-- Team Start -->
     <!--Messages Start-->
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}
-                        {% if message.tags == 'success' %}alert-success{% endif %}
-                        {% if message.tags == 'info' %}alert-info{% endif %}
-                        {% if message.tags == 'warning' %}alert-warning{% endif %}
-                        {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
+                            {% if message.tags == 'success' %}alert-success{% endif %}
+                            {% if message.tags == 'info' %}alert-info{% endif %}
+                            {% if message.tags == 'warning' %}alert-warning{% endif %}
+                            {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
         style="display: flex; flex-direction: row;">
         <span>{{ message }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
@@ -164,80 +162,35 @@
     {% endfor %}
     {% endif %}
     <!--Messages End-->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
-                <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img src="{% static 'img/team-1.jpg' %}" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img src="{% static 'img/team-2.jpg' %}" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img src="{% static 'img/team-3.jpg' %}" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+   <!--Create Job Form Start-->
+   <style>
+    .form-control{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .job_title{
+        padding-right: 60px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .job_title::before{
+        content: "e.g. Marketing Head";
+    }
+   </style>
+    <div class="form-control">
+        <form method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button class="btn btn-outline-success">Create Job!</button>
+        </form>
     </div>
-    <!-- Team End -->
+
+
+
+   <!--Create Job Form End-->
 
 
     <!-- Vendor Start -->
