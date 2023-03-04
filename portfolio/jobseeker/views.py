@@ -135,18 +135,18 @@ def career_pref(request):
             return HttpResponseRedirect(reverse('jobseeker:profile/career_pref'))
     else:
         return render(request, 'jobseeker/profile/career_pref.html')
-@login_required(login_url='loginapp:login')
-def profile(request):
-    current_user = request.user
-    if current_user.is_job_seeker:
-        form = Profile_Pic_Upload()
-        if request.method == 'POST':
-            data = request.POST
-            obj,created= Profile_Pic.objects.update_or_create(user=request.user)
-            if created:
-                form = Profile_Pic_Upload(data)
-                
+# @login_required(login_url='loginapp:login')
+# def profile(request):
+#     current_user = request.user
+#     if current_user.is_job_seeker:
+#         form = Profile_Pic_Upload()
+#         if request.method == 'POST':
+#             data = request.POST
+#             obj,created= Profile_Pic.objects.update_or_create(user=request.user)
+#             if created:
+#                 form = Profile_Pic_Upload(data)
+
             
-    else:
-        messages.warning(request,'You can`t access this page!')
-        return HttpResponseRedirect(reverse('loginapp:login'))
+#     else:
+#         messages.warning(request,'You can`t access this page!')
+#         return HttpResponseRedirect(reverse('loginapp:login'))

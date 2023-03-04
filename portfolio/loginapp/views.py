@@ -26,7 +26,11 @@ def signup(request):
                 login(request, user_var)
                 messages.success(request,'Signed Up Successfully!')
                 messages.info(request,'Remember! You can`t apply for Jobs untill You complete Your Profile!')
+<<<<<<< HEAD
                 return HttpResponseRedirect(reverse('jobseeker:profile'))
+=======
+                return HttpResponseRedirect(reverse('jobseeker:profile/basic_info'))
+>>>>>>> 8b36e2d297d2bfb82bf9b3c51ca8b62791b43bf4
             elif user_var is not None and user_var.is_admin:
                 login(request,user_var)
                 messages.success(request,'Signed Up Admin Successfully!')
@@ -54,9 +58,13 @@ def login_page(request):
             user = authenticate(username=username, password=password)
             if user is not None and user.is_job_seeker:
                 login(request, user)
+<<<<<<< HEAD
                 messages.success(request,'Logged In Successfully!')
                 messages.info(request,'Remember You can`t apply for jobs untill you have completed your profile')
                 return HttpResponseRedirect(reverse('jobseeker:profile/basic_info'))
+=======
+                return HttpResponse('Logged In')
+>>>>>>> 8b36e2d297d2bfb82bf9b3c51ca8b62791b43bf4
             elif user is not None and user.is_admin:
                 login(request,user)
                 messages.success(request,'Signed Up Admin Successfully!')
