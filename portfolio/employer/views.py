@@ -12,13 +12,13 @@ def create_job_view(request):
     if current_user.is_admin:
         form = Create_Job_Form()
         if request.method == 'POST':
-            form = Create_Job_Form(request.POST)
+            form = Create_Job_Form(request.POST,request.FILES)
             if form.is_valid():
                 form_instance = form.save(commit=False)
                 form_instance.admin = current_user
                 form_instance.save()
                 messages.success(request, 'Successfully Posted Your Job!')
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('employer:emp_index'))
             else:
                 messages.error(
                     request, 'Please Fill All Compulsory Fields Carefully!')
@@ -29,3 +29,11 @@ def create_job_view(request):
         messages.warning(
             request, 'You are not authorised to access this page!')
         return HttpResponse('You cant access this page')
+
+@login_required(login_url='loginapp:login')
+def emp_index(request):
+    current_user = request.user
+    if current_user.is_admin:
+        return render(request,'employer/emp_index.html')
+    else:
+        return render(request,'index.html')

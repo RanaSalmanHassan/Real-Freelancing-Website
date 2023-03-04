@@ -256,3 +256,6 @@ class Career_Preference(models.Model):
                                                     blank=True, choices=currency_choices)
     monthly_yearly_choice = models.CharField(max_length=40,
                                                     blank=True, choices=month_year_choice)
+class Profile_Pic(models.Model):
+    user = models.OneToOneField(User,on_delete=models.SET_NULL,related_name='user_profile_pic',null=True)
+    profile_pic = models.ImageField(upload_to='user_pics',default='user.png')

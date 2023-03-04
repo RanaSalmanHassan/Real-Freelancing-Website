@@ -98,8 +98,8 @@
                         <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                            <a href="feature.html" class="dropdown-item">Our features</a>
-                            <a href="team.html" class="dropdown-item active">Team Members</a>
+                            <a href="feature.html" class="dropdown-item active">Our features</a>
+                            <a href="team.html" class="dropdown-item">Team Members</a>
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             <a href="quote.html" class="dropdown-item">Free Quote</a>
                         </div>
@@ -113,18 +113,19 @@
             </div>
         </nav>
 
-        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 20px;">
             <div class="row py-5">
                 <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                    <h1 class="display-4 text-white animated zoomIn">Team Members</h1>
+                    <h1 class="display-4 text-white animated zoomIn">Profile</h1>
                     <a href="" class="h5 text-white">Home</a>
                     <i class="far fa-circle text-white px-2"></i>
-                    <a href="" class="h5 text-white">Team Members</a>
+                    <a href="" class="h5 text-white">Features</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Navbar End -->
+
 
 
     <!-- Full Screen Search Start -->
@@ -146,14 +147,15 @@
         </div>
     </div>
     <!-- Full Screen Search End -->
+
     <!--Messages Start-->
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}
-                            {% if message.tags == 'success' %}alert-success{% endif %}
-                            {% if message.tags == 'info' %}alert-info{% endif %}
-                            {% if message.tags == 'warning' %}alert-warning{% endif %}
-                            {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
+                    {% if message.tags == 'success' %}alert-success{% endif %}
+                    {% if message.tags == 'info' %}alert-info{% endif %}
+                    {% if message.tags == 'warning' %}alert-warning{% endif %}
+                    {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
         style="display: flex; flex-direction: row;">
         <span>{{ message }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
@@ -163,53 +165,96 @@
     {% endif %}
     <!--Messages End-->
 
-   <!--Create Job Form Start-->
-   <style>
-    .form-control{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .job_title{
-        padding-right: 60px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-   </style>
-   <h1 style="text-decoration:underline; font-style: oblique; font-weight: bold;">Create Your Jobs!</h1>
-    <div class="form-control">
-        <form method="post" enctype="multipart/form-data">
-            {%csrf_token%}
-            {{form.as_p}}
-            <button class="btn btn-outline-success">Create Job!</button>
-        </form>
-    </div>
+    <!--Profile Start-->
+
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            ;
+            padding: 10px;
+            grid-gap: 50px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 50px;
+            font-size: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .title {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 
 
+    <div class="grid-container">
+        <div class="grid-item" style='border: none;'>
+            <img src="/media/user.png" alt="">
+            <form method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{form}}
+                <button class="btn btn-outline-info">Change Profile
+                    Pic</button>
+            </form>
 
-   <!--Create Job Form End-->
-
-
-    <!-- Vendor Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5 mb-5">
-            <div class="bg-white">
-                <div class="owl-carousel vendor-carousel">
-                    <img src="{% static 'img/vendor-1.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-2.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-3.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-4.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-5.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-6.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-7.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-8.jpg' %}" alt="">
-                    <img src="{% static 'img/vendor-9.jpg' %}" alt="">
-                </div>
-            </div>
+        </div>
+        <div class="grid-item" style="position: relative;">
+            <h1 style="text-decoration:underline; position: absolute; top: 0; left: 0;">Basic Info : </h1>
+            <span>FIrst Name : {{user.user_basic_info.first_name}} </span>
+            <span>Last Name : {{user.user_basic_info.last_name}} </span>
+            <span>Date of Birth : {{user.user_basic_info.date_of_birth}} </span>
+            <span>Gender : {{user.user_basic_info.gender}} </span>
+            <span>Passport Country : {{user.user_basic_info.passport_country}}</span>
+            <span>Current Location : {{user.user_basic_info.current_location}}</span>
+            <span>Current City Location : {{user.user_basic_info.name_of_city_currently_based}}</span>
+            <span>English Proficiency level : {{user.user_basic_info.level_of_english_language}}</span>
+        </div>
+        <div class="grid-item">
+            <h1 style="text-decoration:underline;" class="title">Education</h1>
+            {%if user.user_education.degree%}
+            <span>Holding A Degree : Yes </span>
+            {%else%}
+            <span>Holding A Degree : No </span>
+            {%endif%}
+            <span>Major/Subject In University : {{user.user_education.subject_in_university}} </span>
+        </div>
+        <div class="grid-item">
+            <h1 style="text-decoration:underline;" class="title">Contact Details</h1>
+            <span>Email : {{user.email}} </span>
+            <span>Country Code : {{user.user_contact_info.counrty_code}} </span>
+            <span>Area Code : {{user.user_contact_info.area_code}}</span>
+            <span>Phone Number : {{user.user_contact_info.actual_number}} </span>
+            <span>Type : {{user.user_contact_info.type}}</span>
+        </div>
+        <div class="grid-item">
+            <h1 style="text-decoration:underline;" class="title">Current Employment</h1>
+            <span>Current Company: {{user.user_employement.name_of_company}}</span>
+            <span>Main Activity : {{user.user_employement.activity_of_company}}</span>
+            <span>My Current Position : {{user.user_employement.current_position}}</span>
+            <span>My Job Category : {{user.user_employement.job_category}}</span>
+            <span>My Experience : {{user.user_employement.experience}}</span>
+        </div>
+        <div class="grid-item">
+            <h1 style="text-decoration:underline;" class="title">Career Prefrences</h1>
+            <span>Main Location I want to Work : {{user.user_pref.first_place}} </span>
+            <span>Secondary Location I want to work : {{user.user_pref.second_place}} </span>
+            <span>Tertiary Location I want to work : {{user.user_pref.third_place}}</span>
+            <span>Expected Salary : {{user.user_pref.min_expected_salary_amount}} &nbsp;
+                {{user.user_pref.min_expected_salary_currency}} &nbsp; {{user.user_pref.monthly_yearly_choice}}</span>
         </div>
     </div>
-    <!-- Vendor End -->
+    <!--Profile End-->
+
 
 
     <!-- Footer Start -->
@@ -330,15 +375,15 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js></script>
-    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
-    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{%static 'lib/wow/wow.min.js'%}"></script>
+    <script src="{%static 'lib/easing/easing.min.js'%}"></script>
+    <script src="{%static 'lib/waypoints/waypoints.min.js'%}"></script>
+    <script src="{%static 'lib/counterup/counterup.min.js'%}"></script>
+    <script src="{%static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
 
     <!-- Template Javascript -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{%static 'js/main.js'%}"></script>
 </body>
 
 </html>
