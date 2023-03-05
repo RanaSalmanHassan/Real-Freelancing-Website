@@ -2,6 +2,10 @@ from django.db import models
 from loginapp.models import User
 from django.core.validators import MaxValueValidator
 from django.core.exceptions import ValidationError
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 Country_Choices = (('Australia', 'Australia'),
                    ('Brazil', 'Brazil'),
@@ -197,65 +201,79 @@ class Basic_Info(models.Model):
         ('Male', 'Male'),
         ('Female', 'Female'),
     )
-    user = models.OneToOneField(
+    user = models.OneToOneField (
         User, on_delete=models.SET_NULL, related_name='user_basic_info', null=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    profile_pic = models.ImageField(upload_to='user_pics',default='user.png')
+    first_name = models.CharField(max_length=30,blank=True,null=True)
+    last_name = models.CharField(max_length=30,blank=True,null=True)
 
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(blank=True,null=True)
     gender = models.CharField(choices=gender_choices,
-                              default='Male', max_length=7)
+                              default='Male', max_length=7,blank=True,null=True)
     passport_country = models.CharField(
-        default='Select', choices=Country_Choices, max_length=25)
+        default='Select', choices=Country_Choices, max_length=25,blank=True,null=True)
     current_location = models.CharField(
-        default='Select', choices=Country_Choices, max_length=25)
-    name_of_city_currently_based = models.CharField(blank=True, max_length=25)
+        default='Select', choices=Country_Choices, max_length=25,blank=True,null=True)
+    name_of_city_currently_based = models.CharField( max_length=25,blank=True,null=True)
     level_of_english_language = models.CharField(
-        choices=language_choices, default='Fluent', max_length=17)
+        choices=language_choices, default='Fluent', max_length=17,blank=True,null=True)
 
 
 class Contact_Details(models.Model):
-    user = models.OneToOneField(
+    user = models.OneToOneField (
         User, on_delete=models.SET_NULL, related_name='user_contact_info', null=True)
     counrty_code = models.CharField(max_length=20,
-                                    choices=Country_Wise_Phone_Number_Codes, default='Select')
+                                    choices=Country_Wise_Phone_Number_Codes, default='Select',blank=True,null=True)
     area_code = models.CharField(
-        validators=[only_integer], max_length=10, default='Select')
-    actual_number = models.CharField(validators=[only_integer], max_length=10)
+        validators=[only_integer], max_length=10, default='Select',blank=True,null=True)
+    actual_number = models.CharField(validators=[only_integer], max_length=10,blank=True,null=True)
     type = models.CharField(choices=type_of_phone_number,
-                            default='Other', max_length=50,)
+                            default='Other', max_length=50,blank=True,null=True)
 
 
 class Education(models.Model):
-    user = models.OneToOneField(
+    user = models.OneToOneField (
         User, on_delete=models.SET_NULL, related_name='user_education', null=True)
     degree = models.BooleanField(default=True)
     fresh_graduate_or_university_student = models.BooleanField(default=False)
     subject_in_university = models.CharField(max_length=100,
-                                             choices=Undergraduate_Subject_Choices, default='Select')
+                                             choices=Undergraduate_Subject_Choices, default='Select',blank=True,null=True)
 
 
 class Current_Employement(models.Model):
-    user = models.OneToOneField(
+    user = models.OneToOneField (
         User, on_delete=models.SET_NULL, related_name='user_employement', null=True)
-    name_of_company = models.CharField(max_length=40, blank=True)
-    activity_of_company = models.CharField(max_length=40, blank=True)
-    current_position = models.CharField(max_length=40, blank=True)
-    job_category = models.CharField(max_length=40, blank=True)
-    experience = models.CharField(max_length=40, blank=True)
+    name_of_company = models.CharField(max_length=40, blank=True,null=True)
+    activity_of_company = models.CharField(max_length=40, blank=True,null=True)
+    current_position = models.CharField(max_length=40, blank=True,null=True)
+    job_category = models.CharField(max_length=40, blank=True,null=True)
+    experience = models.CharField(max_length=40, blank=True,null=True)
 
 
 class Career_Preference(models.Model):
-    user = models.OneToOneField(
+    user = models.OneToOneField (
         User, on_delete=models.SET_NULL, related_name='user_pref', null=True)
-    first_place = models.CharField(max_length=40, blank=True)
-    second_place = models.CharField(max_length=40, blank=True)
-    third_place = models.CharField(max_length=40, blank=True)
+    first_place = models.CharField(max_length=40, blank=True,null=True)
+    second_place = models.CharField(max_length=40, blank=True,null=True)
+    third_place = models.CharField(max_length=40, blank=True,null=True)
     min_expected_salary_amount = models.CharField(max_length=40, blank=True)
     min_expected_salary_currency = models.CharField(max_length=40,
-                                                    blank=True, choices=currency_choices)
+                                                    blank=True, choices=currency_choices,null=True)
     monthly_yearly_choice = models.CharField(max_length=40,
-                                                    blank=True, choices=month_year_choice)
-class Profile_Pic(models.Model):
-    user = models.OneToOneField(User,on_delete=models.SET_NULL,related_name='user_profile_pic',null=True)
-    profile_pic = models.ImageField(upload_to='user_pics',default='user.png')
+                                                    blank=True, choices=month_year_choice,null=True)
+    
+
+@receiver(post_save, sender=User)
+def create_or_save_profile(sender, instance, created, **kwargs):
+    if created and instance.is_job_seeker:
+        Basic_Info.objects.create(user=instance)
+        Education.objects.create(user=instance)
+        Contact_Details.objects.create(user=instance)
+        Current_Employement.objects.create(user=instance)
+        Career_Preference.objects.create(user=instance)
+    elif not created and instance.is_job_seeker:
+        instance.user_basic_info.save()
+        instance.user_education.save()
+        instance.user_contact_info.save()
+        instance.user_employement.save()
+        instance.user_pref.save()

@@ -196,17 +196,14 @@
         }
     </style>
 
-
+    <a href="{%url 'jobseeker:profile/basic_info'%}"><button class="btn btn-outline-info">Edit Profile</button></a>
     <div class="grid-container">
         <div class="grid-item" style='border: none;'>
+            {%if user.user_basic_info.profile_pic%}
+            <img src="{{user.user_basic_info.profile_pic.url}}" alt="">
+            {%else%}
             <img src="/media/user.png" alt="">
-            <form method="post" enctype="multipart/form-data">
-                {%csrf_token%}
-                {{form}}
-                <button class="btn btn-outline-info">Change Profile
-                    Pic</button>
-            </form>
-
+            {%endif%}
         </div>
         <div class="grid-item" style="position: relative;">
             <h1 style="text-decoration:underline; position: absolute; top: 0; left: 0;">Basic Info : </h1>

@@ -11,10 +11,7 @@ class Create_Job_Form(forms.ModelForm):
             'job_description': forms.Textarea(attrs={'class': 'job_description'}),
             'budget': forms.TextInput(attrs={'class': 'budget'}),
             'payment_terms': forms.TextInput(attrs={'class': 'payment_terms'}),
-<<<<<<< HEAD
             'relevent_files': forms.FileInput(attrs={'class': 'relevent_files'}),
-=======
-            'required_skills_and_qualification': forms.TextInput(attrs={'class': 'required_skills_and_qualification'}),
-            'relevent_files': forms.TextInput(attrs={'class': 'relevent_files'}),
->>>>>>> 8b36e2d297d2bfb82bf9b3c51ca8b62791b43bf4
+            'required_skills_and_qualification': forms.TextInput(attrs={'class': 'required_skills_and_qualification'})
+
         }
