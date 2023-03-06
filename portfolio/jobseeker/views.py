@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Basic_Info, Education, Contact_Details, Current_Employement, Career_Preference
 from django.contrib import messages
+from employer.models import Create_Job
+from .forms import Apply_Job_Form
 # Create your views here.
 
 
@@ -206,3 +208,47 @@ def career_pref(request):
 @login_required(login_url='loginapp:login')
 def profile(request):
     return render(request,'jobseeker/profile/profile.html')
+
+
+def search(request):
+    searched_query = request.GET.get('search_jobs', None)
+    if searched_query:
+        searched_results = Create_Job.objects.filter(job_title__icontains=searched_query)
+    else:
+        searched_results = None
+    context = {'searched_results': searched_results,'searched_query':searched_query}
+    return render(request, 'jobseeker/search.html', context)
+
+@login_required(login_url='loginapp:login')
+def apply_for_job(request,pk):
+    job_applied = Create_Job.objects.get(pk=pk)
+    current_user = request.user
+    if current_user.is_job_seeker:
+        form = Apply_Job_Form()
+        if request.method == 'POST':
+            form = Apply_Job_Form(request.POST,request.FILES)
+            if form.is_valid():
+                if current_user.user_basic_info and current_user.user_contact_info and current_user.user_education and current_user.user_employement and current_user.user_pref:
+
+
+                    form_instance = form.save(commit=False)
+                    form_instance.applier = request.user
+                    form_instance.job_applied = job_applied
+                    form_instance.save()
+                    messages.success(request,'Successfully Applied for Job!')
+                    return HttpResponseRedirect(reverse('index'))
+                else:
+                    messages.warning(request,'Please Complete Profile Before Applying!')
+                    return HttpResponseRedirect(reverse('loginapp:profile'))
+                
+            else:
+                print(form.errors)
+                messages.error(request,'Please Fill The Form Correctly!')
+                return HttpResponseRedirect(reverse('jobseeker:apply_for_jobs'))
+        dict = {'form':form,'job_applied':job_applied}
+        return render(request,'jobseeker/apply_for_jobs.html',dict)
+    else:
+        messages.warning(request,'You Can`t Access This Page!')
+        return HttpResponseRedirect(reverse('loginapp:login'))
+
+

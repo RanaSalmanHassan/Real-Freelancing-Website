@@ -85,6 +85,9 @@ class Create_Job(models.Model):
     payment_terms = models.CharField(max_length=40,blank=False,null=False)
     categories = models.CharField(choices=job_categories,max_length=32,blank=False,null=False)
     relevent_files = models.FileField(upload_to='admin/relevent_files',blank=True,null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return (f'{self.job_title} in {self.categories}')
+    
+

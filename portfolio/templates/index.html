@@ -71,7 +71,22 @@
         </div>
     </div>
     <!-- Topbar End -->
-
+    <!--Messages Start-->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}
+                            {% if message.tags == 'success' %}alert-success{% endif %}
+                            {% if message.tags == 'info' %}alert-info{% endif %}
+                            {% if message.tags == 'warning' %}alert-warning{% endif %}
+                            {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"
+        style="display: flex; flex-direction: row;">
+        <span>{{ message }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            style="margin-top: 20px ; margin-right: 50px; padding: 0;"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!--Messages End-->
 
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
@@ -108,7 +123,12 @@
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
                     data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="{%url 'loginapp:signup'%}" class="btn btn-primary py-2 px-4 ms-3">Register/Login</a>
+                {%if user.is_authenticated%}
+                <a href="{%url 'loginapp:logout'%}" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
+                {%else%}
+                <a href="{%url 'loginapp:login'%}" class="btn btn-primary py-2 px-4 ms-3">Register/Login</a>
+                {%endif%}
+
             </div>
         </nav>
 
@@ -166,13 +186,15 @@
                     <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal-body d-flex align-items-center justify-content-center">
-                    <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3"
-                            placeholder="Find Jobs!" name="search_jobs" id="search_jobs">
-                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                <form method="get" action="{%url 'jobseeker:search'%}">
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="input-group" style="max-width: 600px;">
+                            <input type="text" class="form-control bg-transparent border-primary p-3"
+                                placeholder="Find Jobs!" name="search_jobs" id="search_jobs">
+                            <button class="btn btn-primary px-4" type="sumbit"><i class="bi bi-search"></i></button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

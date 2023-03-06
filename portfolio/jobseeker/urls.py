@@ -8,4 +8,6 @@ urlpatterns = [
     path('profile/current_emp', views.current_emp, name='profile/current_emp'),
     path('profile/career_pref', views.career_pref, name='profile/career_pref'),
     path('profile', views.profile, name='profile'),
+    path('search', views.search, name='search'),
+    path('apply_for_job/<pk>/', views.apply_for_job, name='apply_for_job'),
 ]

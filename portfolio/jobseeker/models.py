@@ -3,7 +3,7 @@ from loginapp.models import User
 from django.core.validators import MaxValueValidator
 from django.core.exceptions import ValidationError
 
-
+from employer.models import Create_Job
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your models here.
@@ -277,3 +277,10 @@ def create_or_save_profile(sender, instance, created, **kwargs):
         instance.user_contact_info.save()
         instance.user_employement.save()
         instance.user_pref.save()
+
+
+class Apply_Job(models.Model):
+    applier = models.ForeignKey(User,on_delete=models.CASCADE,related_name='job_applier')
+    job_applied = models.ForeignKey(Create_Job,on_delete=models.SET_NULL,related_name='job_appled',null=True)
+    cover_letter = models.TextField()
+    cv = models.FileField(blank=False,null=False)
